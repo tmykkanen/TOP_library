@@ -5,9 +5,78 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Library</title>
   <link rel="stylesheet" href="style.css">
-  <script src="script.js"></script>
 </head>
 <body>
-  <h1>My Library</h1>
+  <div class="header-container">
+    <h1>My Library</h1>
+    <p>Keep track of books</p>
+    <button class="show-modal button">Add a book</button>
+  </div>
+  <div class="book-cards-container">
+    <div class="book-card" data-title="Default">
+      <h4>{title}</h4>
+      <p>{author}</p>
+      <p>{pages}</p>
+      <p>{readStatus}</p>
+      <label class="toggle-switch">
+        <input type="checkbox">
+        <span class="slider round"></span>
+      </label>
+      <button class="button remove">Remove</button>
+    </div>
+    <div class="book-card" data-title="Default">
+      <h4>{title}</h4>
+      <p>{author}</p>
+      <p>{pages}</p>
+      <p>{readStatus}</p>
+      <label class="toggle-switch">
+        <input type="checkbox">
+        <span class="slider round"></span>
+      </label>
+      <button class="button remove">Remove</button>
+    </div>
+  </div>
+  <dialog class="modal">
+    <div class="form-container">
+      <form class="form" action="" method="get">
+        <div class="form-row">
+          <label for="title">Book Title:</label>
+          <input type="text" id="title" name="title">
+        </div>
+        <div class="form-row">
+          <label for="author">Book Author:</label>
+          <input type="text" id="author" name="author">
+        </div>
+        <div class="form-row">
+          <label for="pages">Pages:</label>
+          <input type="text" id="pages" name="pages">
+        </div>
+        <div class="form-row">
+          <label class="checkbox-label" for="readStatus">
+            <input type="checkbox" id="readStatus" name="readStatus" value="true" />
+            <span>I've read this book</span>
+          </label>
+        </div>
+        <div class="form-row">
+          <button type="submit" class="submit button">Submit</button>
+          <button type="button" autofocus class="close button">Close</button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+  <script class="template" type="text/template">
+    <div class="book-card" data-title="{title}">
+      <h4>{title}</h4>
+      <p>{author}</p>
+      <p>{pages}</p>
+      <p>{readStatus}</p>
+      <label class="toggle-switch">
+        <input type="checkbox">
+        <span class="slider round"></span>
+      </label>
+      <button class="button remove">Remove</button>
+    </div>
+  </script>
+  <script src="script.js"></script>
 </body>
 </html>

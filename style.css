@@ -6,6 +6,7 @@
 /*  2. Remove default margin */
 * {
   margin: 0;
+  padding: 0;
 }
 /* Typographic tweaks! 3. Add accessible line-height 4. Improve text rendering */
 body {
@@ -31,6 +32,229 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 /* END RESET */
 
-h1 {
-  color: blue;
+:root {
+  color: #5d6063;
+  font-family: "Helvetica", "Arial", sans-serif;
+  font-size: 16px;
+  line-height: 1.3;
+}
+
+body {
+  background-color: #eaedf0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Header */
+.header-container {
+  text-align: center;
+  background-color: #f6f7f8;
+  border: 1px solid #d6d9dc;
+  border-radius: 3px;
+  width: 80%;
+  margin: 40px 0;
+  padding: 50px;
+}
+
+.button {
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #5995da;
+  border: none;
+  border-radius: 3px;
+  padding: 10px 40px;
+  cursor: pointer;
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  background-color: #f6f7f8;
+  border: 1px solid #d6d9dc;
+  border-radius: 3px;
+  width: 90%;
+  padding: 50px;
+  margin: 0 0 40px 0;
+}
+
+::backdrop {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+/* Form */
+.form {
+  /* background-color: #f6f7f8;
+  border: 1px solid #d6d9dc;
+  border-radius: 3px;
+  width: 80%;
+  padding: 50px;
+  margin: 0 0 40px 0; */
+}
+
+.form-row {
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.form-row input[type='text'] {
+  background-color: #fff;
+  border: 1px solid #d6d9dc;
+  border-radius: 3px;
+  width: 100%;
+  padding: 7px;
+  font-size: 14px;
+}
+
+.form-row label {
+  margin-bottom: 15px;
+}
+
+.form-row .checkbox-label {
+  margin-bottom: 0;
+}
+
+.form-row button {
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #5995da;
+  border: none;
+  border-radius: 3px;
+  padding: 10px 40px;
+  cursor: pointer;
+}
+
+.form-row button:hover {
+  background-color: #76aeed;
+}
+
+.form-row button:active {
+  background-color: #407fc7;
+}
+
+/* Book Cards */
+.book-cards-container {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.book-card {
+  text-align: center;
+  background-color: #f6f7f8;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  border: 1px  solid #d6d9dc;
+  border-radius: 3px;
+  width: 150px;
+  height: 150px;
+  padding: 16px;
+  margin-bottom: 40px;
+}
+
+.book-card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* CSS Toggle Switch - https://www.w3schools.com/howto/howto_css_switch.asp */
+/* The switch - the box around the slider */
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #2196f3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Desktop */
+@media only screen and (min-width: 700px) {
+  .header-container,
+  .form {
+    width: 600px;
+  }
+  .modal {
+    width: 700px;
+  }
+  .book-cards-container {
+    width: 600px;
+  }
+  .form-row {
+    flex-direction: row;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+  .form-row input[type='text'] {
+    width: 250px;
+    height: initial;
+  }
+  .form-row label {
+    text-align: right;
+    width: 120px;
+    margin-top: 7px;
+    padding-right: 20px;
+  }
+  .form-row .checkbox-label {
+    margin-left: 120px;
+    width: auto;
+  }
+  .form-row button {
+    margin-left: 120px;
+  }
 }
