@@ -48,21 +48,16 @@ const library = {
         .replace('{pages}', pages)
         .replace('{readStatus}', readStatus));
     this.booksContainer.innerHTML = finalMarkup;
-    this.bindEvents();
   },
-  processForm() {
-    // e.preventDefault();
-    console.log(this);
-    // console.log(e);
+  processForm(e) {
+    e.preventDefault();
     const book = new Book(
       this.formTitle.value,
       this.formAuthor.value,
       this.formPages.value,
       this.formReadStatus.value,
     );
-    console.log(book);
     this.books.push(book);
-    console.log(this.books);
     this.render();
     this.modal.close();
     this.form.reset();
