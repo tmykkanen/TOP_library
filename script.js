@@ -21,7 +21,7 @@ const library = (function () {
     this.title = title;
     this.author = author;
     this.pages = pages;
-    this.readStatus = readStatus;
+    this.readStatus = readStatus === true ? 'checked' : '';
   }
 
   // Methods

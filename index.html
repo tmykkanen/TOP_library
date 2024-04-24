@@ -19,7 +19,7 @@
       <p>{pages}</p>
       <p>{readStatus}</p>
       <label class="toggle-switch">
-        <input type="checkbox">
+        <input type="checkbox" checked>
         <span class="slider round"></span>
       </label>
       <button class="button remove">Remove</button>
@@ -69,9 +69,9 @@
       <h4>{title}</h4>
       <p>{author}</p>
       <p>{pages}</p>
-      <p>{readStatus}</p>
+      <p>Read?</p>
       <label class="toggle-switch">
-        <input type="checkbox">
+        <input type="checkbox" {readStatus}>
         <span class="slider round"></span>
       </label>
       <button class="button remove">Remove</button>
