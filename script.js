@@ -10,7 +10,7 @@ const library = {
   books: [],
   init() {
     this.cacheDom();
-    this.bindEvents();
+    this.bindEventsStatic();
   },
   cacheDom() {
     this.showModal = document.querySelector('.show-modal');
@@ -25,7 +25,7 @@ const library = {
     this.formPages = document.getElementById('pages');
     this.formReadStatus = document.getElementById('readStatus');
   },
-  bindEvents() {
+  bindEventsStatic() {
     this.showModal.addEventListener('click', () => {
       this.modal.showModal();
     });
@@ -36,7 +36,12 @@ const library = {
       this.modal.close();
       this.form.reset();
     });
-    this.form.addEventListener('submit', this.processForm.bind(this));
+    this.form.addEventListener('submit', this.addToLibrary.bind(this));
+  },
+  bindEventsDynamic() {
+    this.booksContainer.querySelectorAll('.remove').forEach((btn) => {
+      btn.addEventListener('click', this.removeFromLibrary.bind(this));
+    });
   },
   render() {
     const finalMarkup = this.books
@@ -48,8 +53,9 @@ const library = {
         .replace('{pages}', pages)
         .replace('{readStatus}', readStatus));
     this.booksContainer.innerHTML = finalMarkup;
+    this.bindEventsDynamic();
   },
-  processForm(e) {
+  addToLibrary(e) {
     e.preventDefault();
     const book = new Book(
       this.formTitle.value,
@@ -61,6 +67,12 @@ const library = {
     this.render();
     this.modal.close();
     this.form.reset();
+  },
+  removeFromLibrary(e) {
+    const target = e.target.parentNode.dataset.title;
+    const index = this.books.findIndex((x) => x.title === target);
+    this.books.splice(index, 1);
+    this.render();
   },
 };
 
