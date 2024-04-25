@@ -1,3 +1,4 @@
+/* eslint-disable arrow-body-style */
 const library = (function () {
   // Bookshelf
   const books = [];
@@ -21,19 +22,22 @@ const library = (function () {
     this.title = title;
     this.author = author;
     this.pages = pages;
-    this.readStatus = readStatus === true ? 'checked' : '';
+    this.readStatus = readStatus;
   }
 
   // Methods
   const render = () => {
-    const finalMarkup = books
+    const finalMarkupArray = books
       .map(({
         title, author, pages, readStatus,
       }) => template
         .replaceAll('{title}', title)
         .replace('{author}', author)
         .replace('{pages}', pages)
-        .replace('{readStatus}', readStatus));
+        .replace('{readStatus}', () => {
+          return readStatus === true ? 'checked' : '';
+        }));
+    const finalMarkup = finalMarkupArray.join('');
     booksContainer.innerHTML = finalMarkup;
     bindEventsDynamic();
   };
@@ -59,6 +63,12 @@ const library = (function () {
     render();
   };
 
+  const toggleReadStatus = (e) => {
+    const target = e.target.parentNode.parentNode.parentNode.dataset.title;
+    const index = books.findIndex((x) => x.title === target);
+    books[index].readStatus = !books[index].readStatus;
+  };
+
   // bindEventsStatic
   showModal.addEventListener('click', () => {
     modal.showModal();
@@ -75,6 +85,9 @@ const library = (function () {
   const bindEventsDynamic = () => {
     booksContainer.querySelectorAll('.remove').forEach((btn) => {
       btn.addEventListener('click', removeFromLibrary);
+    });
+    booksContainer.querySelectorAll('.toggle-switch span').forEach((toggle) => {
+      toggle.addEventListener('click', toggleReadStatus);
     });
   };
   return {
