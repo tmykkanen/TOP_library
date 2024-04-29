@@ -9,37 +9,45 @@
 <body>
   <div class="header-container">
     <h1>Library</h1>
-    <p>Keep track of books</p>
-    <button class="show-modal button">Add a book</button>
+    <button class="login" type="button">Log in</button>
   </div>
+  <button class="show-modal button">Add a book</button>
   <div class="book-cards-container">
-
+    <div class="book-card" data-title="{title}">
+      <a href="#" class="remove-btn"></a>
+      <h4>Dune</h4>
+      <p>by Frank Herbert</p>
+      <p>754 pages</p>
+      <button class="button read" type="button">Read</button>
+    </div>
+    <div class="book-card" data-title="{title}">
+      <a href="#" class="remove-btn"></a>
+      <h4>Harry Potter</h4>
+      <p>by J.K. Rowling</p>
+      <p>453 pages</p>
+      <button class="button unread" type="button">Not Read</button>
+    </div>
+    <div class="book-card" data-title="{title}">
+      <a href="#" class="remove-btn"></a>
+      <h4>Bible</h4>
+      <p>by God</p>
+      <p>2003 pages</p>
+      <button class="button" type="button">Read</button>
+    </div>
   </div>
   <dialog class="modal">
     <div class="form-container">
       <form class="form" action="" method="get">
-        <div class="form-row">
-          <label for="title">Book Title:</label>
-          <input type="text" id="title" name="title">
-        </div>
-        <div class="form-row">
-          <label for="author">Book Author:</label>
-          <input type="text" id="author" name="author">
-        </div>
-        <div class="form-row">
-          <label for="pages">Pages:</label>
-          <input type="text" id="pages" name="pages">
-        </div>
-        <div class="form-row">
-          <label class="checkbox-label" for="readStatus">
-            <input type="checkbox" id="readStatus" name="readStatus" value="false" />
-            <span>I've read this book</span>
-          </label>
-        </div>
-        <div class="form-row">
-          <button type="submit" class="submit button">Submit</button>
-          <button type="button" autofocus class="cancel button">Cancel</button>
-        </div>
+        <h3>Add new book</h3>
+        <input class="input" type="text" id="title" placeholder="Title" required maxlength="100">
+        <input class="input" type="text" id="author" placeholder="Author" required maxlength="100">
+        <input class="input" type="number" id="pages" placeholder="Pages" required>
+        <label class="checkbox-label" for="readStatus">
+          <span>I've read this book</span>  
+          <input type="checkbox" id="readStatus" name="readStatus" value="false" />
+        </label>
+        <button type="submit" class="submit button">Submit</button>
+        <button type="button" autofocus class="cancel button">Cancel</button>
       </form>
     </div>
   </dialog>
