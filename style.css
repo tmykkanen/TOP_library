@@ -68,6 +68,8 @@ body {
   cursor: pointer;
 }
 
+/* Modal */
+
 .modal {
   position: fixed;
   top: 50%;
