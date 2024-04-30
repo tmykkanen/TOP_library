@@ -188,10 +188,11 @@ body {
 
 /* CSS Toggle Switch - https://www.w3schools.com/howto/howto_css_switch.asp */
 /* The switch - the box around the slider */
-/* [ ] Finish setting up read status toggle switch */
-.read-status-toggle {
-  display: flex;
-  align-content: space-between;
+/* [X] Finish setting up read status toggle switch */
+.toggle-container {
+  /* display: flex;
+  align-content: space-between; */
+  grid-column: span 2;
 }
 
 .switch {
@@ -220,8 +221,8 @@ body {
   right: 0;
   bottom: 0;
   background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: .2s;
+  transition: .2s;
   /* border-radius: 34px; */
   border-radius: 24px;
 }
@@ -236,8 +237,8 @@ body {
   left: 4px;
   bottom: 4px;
   background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: .2s;
+  transition: .2s;
   border-radius: 50%;
 }
 
