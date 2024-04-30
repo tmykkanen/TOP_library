@@ -19,7 +19,6 @@ const library = (function library() {
 
   // add book function
   const addBookToShelf = (...args) => {
-    // [ ] ADD CHECK FOR EXISTING BOOK
     const book = new Book(...args);
     bookshelf.push(book);
   };
@@ -76,6 +75,16 @@ const display = (function display() {
   });
   submit.addEventListener('click', (e) => {
     e.preventDefault();
+
+    if (bookshelf.find((book) => book.title === formTitle.value)) {
+      const existingWarning = document.querySelector('.warning');
+      if (existingWarning) existingWarning.remove();
+      const warningHTML = document.createElement('p');
+      warningHTML.textContent = 'This book is already in your library.';
+      warningHTML.classList.add('form-warning');
+      form.insertBefore(warningHTML, formAuthor);
+      return;
+    }
 
     if (form.checkValidity()) {
       const { checked } = formReadStatus;

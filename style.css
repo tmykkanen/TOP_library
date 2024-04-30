@@ -174,8 +174,12 @@ body {
   gap: 16px;
 }
 
-.form h3, .form input, .form label {
+.form h3, .form input, .form label, .form-warning {
   grid-column: span 2;
+}
+
+.form-warning {
+  color: red;
 }
 
 .input {
@@ -203,7 +207,7 @@ body {
 } */
 
 .input:invalid {
-  /* background-color: red; */
+  background-color: red;
 }
 
 .input:focus::placeholder {
