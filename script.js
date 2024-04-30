@@ -1,7 +1,7 @@
 /* eslint-disable arrow-body-style */
 
 // [ ] Clean up console logs + eslint overrides
-// [ ] Message for invalid forms
+// [X] Message for invalid forms
 
 class Book {
   constructor(title, author, pages, status) {
@@ -77,24 +77,21 @@ const display = (function display() {
   submit.addEventListener('click', (e) => {
     e.preventDefault();
 
-    // console.log(formTitle.value);
-    if (!formTitle.value || !formAuthor.value || !formPages.value) {
-      return;
+    if (form.checkValidity()) {
+      const { checked } = formReadStatus;
+      const status = checked === true ? 'read' : 'unread';
+
+      addBookToShelf(
+        formTitle.value,
+        formAuthor.value,
+        formPages.value,
+        status,
+      );
+      // eslint-disable-next-line no-use-before-define
+      render();
+      modal.close();
+      form.reset();
     }
-
-    const { checked } = formReadStatus;
-    const status = checked === true ? 'read' : 'unread';
-
-    addBookToShelf(
-      formTitle.value,
-      formAuthor.value,
-      formPages.value,
-      status,
-    );
-    // eslint-disable-next-line no-use-before-define
-    render();
-    modal.close();
-    form.reset();
   });
 
   cancel.addEventListener('click', () => {
