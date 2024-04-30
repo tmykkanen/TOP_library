@@ -71,16 +71,14 @@ const display = (function display() {
   showModal.addEventListener('click', () => {
     modal.showModal();
   });
-  submit.addEventListener('click', () => {
-    modal.close();
-  });
-  cancel.addEventListener('click', () => {
-    modal.close();
-    form.reset();
-  });
-
-  form.addEventListener('submit', (e) => {
+  submit.addEventListener('click', (e) => {
     e.preventDefault();
+
+    // console.log(formTitle.value);
+    if (!formTitle.value || !formAuthor.value || !formPages.value) {
+      return;
+    }
+
     const { checked } = formReadStatus;
     const status = checked === true ? 'read' : 'unread';
 
@@ -91,6 +89,11 @@ const display = (function display() {
       status,
     );
     render();
+    modal.close();
+    form.reset();
+  });
+
+  cancel.addEventListener('click', () => {
     modal.close();
     form.reset();
   });
