@@ -13,12 +13,12 @@
   </div>
   <button class="show-modal button">Add a book</button>
   <div class="book-cards-container">
-    <div class="book-card" data-title="{title}">
+    <div class="book-card" data-title="Dune">
       <a href="#" class="remove-btn"></a>
       <h4>Dune</h4>
       <p>by Frank Herbert</p>
       <p>754 pages</p>
-      <button class="button read" type="button">Read</button>
+      <button class="button Read" type="button">Read</button>
     </div>
   </div>
   <dialog class="modal">
@@ -28,30 +28,15 @@
         <input class="input" type="text" id="title" placeholder="Title" required maxlength="100">
         <input class="input" type="text" id="author" placeholder="Author" required maxlength="100">
         <input class="input" type="number" id="pages" placeholder="Pages" required>
-        <label class="checkbox-label" for="readStatus">
+        <label class="checkbox-label" for="status">
           <span>I've read this book</span>  
-          <input type="checkbox" id="readStatus" name="readStatus" value="false" />
+          <input type="checkbox" id="status" name="status" value="read" />
         </label>
         <button type="submit" class="submit button">Submit</button>
         <button type="button" autofocus class="cancel button">Cancel</button>
       </form>
     </div>
   </dialog>
-  <script class="template" type="text/template">
-    <div class="book-card" data-title="{title}">
-      <h4>{title}</h4>
-      <p>{author}</p>
-      <p>{pages}</p>
-      <div class="read-status-toggle">
-        <p>Read?</p>
-        <label class="toggle-switch">
-          <input type="checkbox" {readStatus}>
-          <span class="slider round"></span>
-        </label>
-      </div>
-      <button class="button remove">Remove</button>
-    </div>
-  </script>
   <script src="script.js"></script>
 </body>
 </html>

@@ -82,6 +82,15 @@ body {
   cursor: pointer;
 }
 
+
+.button.read {
+  background-color: green;
+}
+
+.button.unread {
+  background-color: red;
+}
+
 .button.show-modal {
   margin: 0 auto 25px;
   display: block;

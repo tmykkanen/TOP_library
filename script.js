@@ -28,8 +28,14 @@ const library = (function library() {
   };
 
   const toggleReadStatus = (target) => {
-    const index = bookshelf.findIndex((x) => x.title === target);
-    bookshelf[index].readStatus = !bookshelf[index].readStatus;
+    // console.log(target);
+    const index = bookshelf.findIndex((x) => x.title === target.parentNode.dataset.title);
+    // console.log(bookshelf[index]);
+    // console.log(bookshelf[index].status);
+    bookshelf[index].status = bookshelf[index].status === 'read' ? 'unread' : 'read';
+    // bookshelf[index].readStatus = !bookshelf[index].readStatus;
+    // console.log(bookshelf[index].status);
+    return bookshelf[index].status;
   };
 
   return {
@@ -55,12 +61,11 @@ const display = (function display() {
   const modal = document.querySelector('.modal');
   const submit = document.querySelector('.submit');
   const cancel = document.querySelector('.cancel');
-  const template = document.querySelector('.template').innerHTML;
   const bookCardsContainer = document.querySelector('.book-cards-container');
   const formTitle = document.getElementById('title');
   const formAuthor = document.getElementById('author');
   const formPages = document.getElementById('pages');
-  const formReadStatus = document.getElementById('readStatus');
+  const formReadStatus = document.getElementById('status');
 
   // bindEventsStatic
   showModal.addEventListener('click', () => {
@@ -73,34 +78,38 @@ const display = (function display() {
     modal.close();
     form.reset();
   });
+
   form.addEventListener('submit', (e) => {
     e.preventDefault();
+    const { checked } = formReadStatus;
+    const status = checked === true ? 'read' : 'unread';
+
     addBookToShelf(
       formTitle.value,
       formAuthor.value,
       formPages.value,
-      formReadStatus.checked,
+      status,
     );
     render();
     modal.close();
     form.reset();
   });
 
-  const bindEventsDynamic = () => {
-    bookCardsContainer.querySelectorAll('.remove').forEach((btn) => {
-      btn.addEventListener('click', (e) => {
-        removeBookFromShelf(e.target.parentNode.dataset.title);
-        render();
-      });
-    });
+  // const bindEventsDynamic = () => {
+  //   bookCardsContainer.querySelectorAll('.remove').forEach((btn) => {
+  //     btn.addEventListener('click', (e) => {
+  //       removeBookFromShelf(e.target.parentNode.dataset.title);
+  //       render();
+  //     });
+  //   });
 
-    bookCardsContainer.querySelectorAll('.toggle-switch span').forEach((toggle) => {
-      toggle.addEventListener('click', () => {
-        const target = e.target.parentNode.parentNode.parentNode.dataset.title;
-        toggleReadStatus(target);
-      });
-    });
-  };
+  //   bookCardsContainer.querySelectorAll('.toggle-switch span').forEach((toggle) => {
+  //     toggle.addEventListener('click', () => {
+  //       const target = e.target.parentNode.parentNode.parentNode.dataset.title;
+  //       toggleReadStatus(target);
+  //     });
+  //   });
+  // };
 
   // const renderOLD = () => {
   //   const finalMarkupArray = bookshelf
@@ -124,17 +133,12 @@ const display = (function display() {
     bookCardsContainer.innerHTML = '';
     for (let book = 0; book < bookshelf.length; book += 1) {
       // parent node: bookCardsContainer
-      console.log(book);
-      console.log(bookshelf);
-      console.log(bookshelf[book]);
       const {
         title,
         author,
         pages,
         status,
       } = bookshelf[book];
-
-      console.log(title);
 
       const div = document.createElement('div');
       div.classList.add('book-card');
@@ -143,6 +147,12 @@ const display = (function display() {
       const removeBtn = document.createElement('a');
       removeBtn.classList.add('remove-btn');
       removeBtn.href = '#';
+      removeBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        // console.log('Remove Button');
+        removeBookFromShelf(e.target.parentNode.dataset.title);
+        render();
+      });
 
       const titleHTML = document.createElement('h4');
       titleHTML.textContent = title;
@@ -156,7 +166,22 @@ const display = (function display() {
       const statusHTML = document.createElement('button');
       statusHTML.classList.add('button', status);
       statusHTML.type = 'button';
-      statusHTML.textContent = status;
+      if (status === 'read') statusHTML.textContent = 'Read';
+      if (status === 'unread') statusHTML.textContent = 'Not Read';
+      statusHTML.addEventListener('click', (e) => {
+        // console.log('toggle status');
+        // console.log(e.target.parentNode.dataset.title);
+        const { target } = e;
+        if (toggleReadStatus(target) === 'read') {
+          target.classList.remove('unread');
+          target.classList.add('read');
+          statusHTML.textContent = 'Read';
+        } else {
+          target.classList.remove('read');
+          target.classList.add('unread');
+          statusHTML.textContent = 'Not Read';
+        }
+      });
 
       div.appendChild(removeBtn);
       div.appendChild(titleHTML);
@@ -252,7 +277,6 @@ const display = (function display() {
   //     }
   //   }
   // };
-
 
   return { render };
 }());
