@@ -1,3 +1,10 @@
+/*  [ ] Finalize sizing for small screens 
+    [ ] Add media queries and custom styles for larger screens
+    [ ] Color scheme w/ css variables
+    [X] Style form
+    [ ] Consistent button sizing (Read / Not Read)
+*/
+
 /* CSS RESET https://www.joshwcomeau.com/css/custom-css-reset/ */
 /* 1. Use a more-intuitive box-sizing model. */
 *, *::before, *::after {
@@ -43,7 +50,7 @@ body {
   background-color: #eaedf0;
 }
 
-/* Header */
+/* ------ HEADER ------ */
 .header-container {
   background-color: #f6f7f8;
   border: 1px solid #d6d9dc;
@@ -64,7 +71,13 @@ body {
   margin-top: 15px;
 }
 
-/* Bookshelf */
+/* ------ BOOKSHELF ------ */
+/* [ ] Rename .show-modal class to .add-a-book */
+.button.show-modal {
+  margin: 0 auto 25px;
+  display: block;
+}
+
 .book-cards-container {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
@@ -72,6 +85,7 @@ body {
   /* row-gap: 25px; */
 }
 
+/* [ ] Clean up button styles */
 .button {
   background-color: #5995da;
   font-weight: bold;
@@ -80,20 +94,6 @@ body {
   border-radius: 3px;
   padding: 10px;
   cursor: pointer;
-}
-
-
-.button.read {
-  background-color: green;
-}
-
-.button.unread {
-  background-color: red;
-}
-
-.button.show-modal {
-  margin: 0 auto 25px;
-  display: block;
 }
 
 .book-card {
@@ -112,7 +112,15 @@ body {
   margin-top: 10px;
 }
 
-/* Remove Button */
+.button.read {
+  background-color: green;
+}
+
+.button.unread {
+  background-color: red;
+}
+
+/* Remove Button - https://codepen.io/brissmyr/pen/nLmreZ */
 .remove-btn {
   width: 0px;
   height: 16px;
@@ -139,7 +147,8 @@ body {
   transform: rotate(-45deg);
 }
 
-/* Modal */
+/* ------ ADD BOOK FORM ------ */
+/* [ ] Rename modal styles to more functional description names */
 .modal {
   position: fixed;
   top: 50%;
@@ -152,15 +161,99 @@ body {
   /* width: 300px; */
   /* height: 300px; */
   padding: 32px;
+  min-width: 300px;
 }
 
 ::backdrop {
   background-color: rgba(0, 0, 0, 0.4);
 }
 
+.form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.form h3, .form input, .form label {
+  grid-column: span 2;
+}
+
 .input {
   background-color: #fff;
   border: 1px solid #d6d9dc;
   border-radius: 3px;
-  margin-bottom: 15px;
+  /* margin-bottom: 15px; */
+  padding: 5px 10px;
+}
+
+/* CSS Toggle Switch - https://www.w3schools.com/howto/howto_css_switch.asp */
+/* The switch - the box around the slider */
+/* [ ] Finish setting up read status toggle switch */
+.read-status-toggle {
+  display: flex;
+  align-content: space-between;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  /* width: 60px;
+  height: 34px; */
+  width: 40px;
+  height: 24px;
+  margin-left: 10px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+  /* border-radius: 34px; */
+  border-radius: 24px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  /* height: 26px; */
+  /* width: 26px; */
+  height: 16px;
+  width: 16px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #5995da;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #5995da;
+}
+
+input:checked + .slider:before {
+  /* -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px); */
+  -webkit-transform: translateX(16px);
+  -ms-transform: translateX(16px);
+  transform: translateX(16px);
 }

@@ -1,5 +1,8 @@
 /* eslint-disable arrow-body-style */
 
+// [ ] Clean up console logs + eslint overrides
+// [ ] Message for invalid forms
+
 class Book {
   constructor(title, author, pages, status) {
     this.title = title;
@@ -16,7 +19,7 @@ const library = (function library() {
 
   // add book function
   const addBookToShelf = (...args) => {
-    // [ ] TODO: ADD CHECK FOR EXISTING BOOK
+    // [ ] ADD CHECK FOR EXISTING BOOK
     const book = new Book(...args);
     bookshelf.push(book);
   };
@@ -88,6 +91,7 @@ const display = (function display() {
       formPages.value,
       status,
     );
+    // eslint-disable-next-line no-use-before-define
     render();
     modal.close();
     form.reset();
@@ -97,40 +101,6 @@ const display = (function display() {
     modal.close();
     form.reset();
   });
-
-  // const bindEventsDynamic = () => {
-  //   bookCardsContainer.querySelectorAll('.remove').forEach((btn) => {
-  //     btn.addEventListener('click', (e) => {
-  //       removeBookFromShelf(e.target.parentNode.dataset.title);
-  //       render();
-  //     });
-  //   });
-
-  //   bookCardsContainer.querySelectorAll('.toggle-switch span').forEach((toggle) => {
-  //     toggle.addEventListener('click', () => {
-  //       const target = e.target.parentNode.parentNode.parentNode.dataset.title;
-  //       toggleReadStatus(target);
-  //     });
-  //   });
-  // };
-
-  // const renderOLD = () => {
-  //   const finalMarkupArray = bookshelf
-  //     .map(({
-  //       title, author, pages, readStatus,
-  //     }) => template
-  //       .replaceAll('{title}', title)
-  //       .replace('{author}', author)
-  //       .replace('{pages}', pages)
-  //       .replace('{readStatus}', () => {
-  //         return readStatus === true ? 'checked' : '';
-  //       }));
-
-  //   const finalMarkup = finalMarkupArray.join('');
-  //   bookCardsContainer.innerHTML = finalMarkup;
-
-  //   bindEventsDynamic();
-  // };
 
   const render = () => {
     bookCardsContainer.innerHTML = '';
@@ -194,92 +164,6 @@ const display = (function display() {
       bookCardsContainer.appendChild(div);
     }
   };
-
-  // <div class="book-card" data-title="{title}">
-  //     <a href="#" class="remove-btn"></a>
-  //     <h4>Dune</h4>
-  //     <p>by Frank Herbert</p>
-  //     <p>754 pages</p>
-  //     <button class="button read" type="button">Read</button>
-  //   </div>
-
-  // const renderHeader = (gameState) => {
-  //   headerContainer.innerHTML = '';
-
-  //   const h1 = document.createElement('h1');
-  //   h1.classList.add();
-  //   h1.textContent = 'TIC TAC TOE';
-  //   headerContainer.appendChild(h1);
-
-  //   if (gameState === 'before') {
-  //     const elem = document.createElement('button');
-  //     elem.type = 'button';
-  //     elem.classList.add('center');
-  //     elem.textContent = 'Begin Game';
-  //     // eslint-disable-next-line no-use-before-define
-  //     elem.addEventListener('click', () => GameController.playGame());
-  //     headerContainer.appendChild(elem);
-  //   }
-  //   if (gameState === 'during') {
-  //     const activePlayer = players.find((e) => e.active);
-  //     const elem = document.createElement('h2');
-  //     elem.classList.add('center');
-  //     elem.textContent = `${activePlayer.name} (${activePlayer.mark}), your turn.`;
-  //     headerContainer.appendChild(elem);
-  //   }
-  //   if (gameState === 'over') {
-  //     let winMsg = 'Tie!';
-
-  //     if (players[0].winner) {
-  //       winMsg = 'Player 1 (X) wins!';
-  //     } else if (players[1].winner) {
-  //       winMsg = 'Player 2 (O) wins!';
-  //     }
-
-  //     const msg = document.createElement('h2');
-  //     msg.classList.add('left-justify');
-  //     msg.textContent = winMsg;
-  //     headerContainer.appendChild(msg);
-
-  //     const btn = document.createElement('button');
-  //     btn.type = 'button';
-  //     btn.classList.add('right-justify');
-  //     btn.textContent = 'Play Again';
-  //     // eslint-disable-next-line no-use-before-define
-  //     btn.addEventListener('click', () => GameController.playGame());
-  //     headerContainer.appendChild(btn);
-  //   }
-  // };
-
-  // const render = (gameState) => {
-  //   renderHeader(gameState);
-
-  //   boardContainer.innerHTML = '';
-
-  //   for (let cell = 0; cell < board.length; cell += 1) {
-  //     const div = document.createElement('div');
-  //     div.setAttribute('id', cell);
-  //     div.classList.add('board-cell');
-  //     div.textContent = board[cell];
-  //     if (board[cell] === 'X') div.classList.add('X');
-  //     if (board[cell] === 'O') div.classList.add('O');
-  //     boardContainer.appendChild(div);
-  //     if (gameState === 'during') {
-  //       div.addEventListener('click', (e) => GameController.takePlayerTurn(e));
-  //       div.addEventListener('mouseover', () => {
-  //         if (board[cell] === '') {
-  //           div.classList.add('open-cell-hover');
-  //           const activePlayer = players.find((player) => player.active);
-  //           div.innerHTML = activePlayer.mark;
-  //         }
-  //       });
-  //       div.addEventListener('mouseout', () => {
-  //         div.innerHTML = board[cell];
-  //         div.classList.remove('open-cell-hover');
-  //       });
-  //     }
-  //   }
-  // };
 
   return { render };
 }());
