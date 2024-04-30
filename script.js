@@ -2,6 +2,7 @@
 
 // [ ] Clean up console logs + eslint overrides
 // [X] Message for invalid forms
+// [ ] Clean up class names (esp for buttons)
 
 class Book {
   constructor(title, author, pages, status) {
