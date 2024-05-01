@@ -69,6 +69,16 @@ const display = (function display() {
   const formAuthor = document.getElementById('author');
   const formPages = document.getElementById('pages');
   const formReadStatus = document.getElementById('status');
+  let warningHTML;
+
+  const resetForm = () => {
+    modal.close();
+    if (warningHTML) {
+      warningHTML.remove();
+      warningHTML = '';
+    }
+    form.reset();
+  };
 
   // bindEventsStatic
   addBookButton.addEventListener('click', () => {
@@ -76,11 +86,9 @@ const display = (function display() {
   });
   submit.addEventListener('click', (e) => {
     e.preventDefault();
-    const existingWarning = document.querySelector('.form-warning');
     if (bookshelf.find((book) => book.title === formTitle.value)) {
-      e.preventDefault();
-      if (existingWarning) existingWarning.remove();
-      const warningHTML = document.createElement('p');
+      if (warningHTML) return;
+      warningHTML = document.createElement('p');
       warningHTML.textContent = 'This book is already in your library.';
       warningHTML.classList.add('form-warning');
       form.insertBefore(warningHTML, formAuthor);
@@ -100,19 +108,11 @@ const display = (function display() {
       );
       // eslint-disable-next-line no-use-before-define
       render();
-      modal.close();
-      form.reset();
-      if (existingWarning) existingWarning.remove();
+      resetForm();
     }
   });
 
-  cancel.addEventListener('click', () => {
-    const existingWarning = document.querySelector('.form-warning');
-    modal.close();
-    form.reset();
-    if (existingWarning) existingWarning.remove();
-    console.log(existingWarning);
-  });
+  cancel.addEventListener('click', resetForm);
 
   const render = () => {
     bookCardsContainer.innerHTML = '';
