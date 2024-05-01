@@ -132,10 +132,10 @@ const display = (function display() {
       titleHTML.textContent = title;
 
       const authorHTML = document.createElement('p');
-      authorHTML.textContent = author;
+      authorHTML.textContent = `by ${author}`;
 
       const pagesHTML = document.createElement('p');
-      pagesHTML.textContent = pages;
+      pagesHTML.textContent = `${pages} pages`;
 
       const statusHTML = document.createElement('button');
       statusHTML.classList.add('button', status);
