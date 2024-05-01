@@ -1,5 +1,5 @@
 /*  [X] Finalize sizing for small screens 
-    [ ] Add media queries and custom styles for larger screens
+    [X] Add media queries and custom styles for larger screens
     [X] Color scheme w/ css variables
     [X] Style form
     [X] Consistent button sizing (Read / Not Read)
@@ -168,6 +168,7 @@ body {
 }
 
 /* Remove Button - https://codepen.io/brissmyr/pen/nLmreZ */
+/* BUG: Fix positioning in larger layouts - change absolute */
 .remove-btn {
   width: 0px;
   height: 16px;
@@ -333,4 +334,24 @@ input:checked + .slider:before {
   -webkit-transform: translateX(16px);
   -ms-transform: translateX(16px);
   transform: translateX(16px);
+}
+
+@media screen and (min-width: 600px) {
+  .book-cards-container {
+    width: 90%;
+    margin: 0 auto;
+    gap: 32px;
+  }
+  .book-card {
+    grid-column: span 3;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .book-card {
+    grid-column: span 2;
+  }
+  .book-cards-container {
+    max-width: 1000px;
+  }
 }
