@@ -2,7 +2,8 @@
     [ ] Add media queries and custom styles for larger screens
     [X] Color scheme w/ css variables
     [X] Style form
-    [ ] Consistent button sizing (Read / Not Read)
+    [X] Consistent button sizing (Read / Not Read)
+    [ ] Clean up button styles
 */
 
 /* CSS RESET https://www.joshwcomeau.com/css/custom-css-reset/ */
@@ -39,67 +40,11 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 /* END RESET */
 
-/* ------ COLORS ------ */
-
-:root {
-  /* 
-  regular buttons
-  background
-  header / card background
-  read / unread status buttons
-  font colors
-  button font colors
-  toggle switch
-  validation fields
-  */
-
-  /* 
-  ORG
-  --page-bg: #eaedf0;
-  --card-bg: #f6f7f8;
-  --card-border: #d6d9dc;
-  --button-regular: #5995da;
-  --button-read: green;
-  --button-unread: red;
-  --button-remove: #333;
-  --button-font-color: #fff;
-  --font-color: #5d6063;
-  --input-bg: #fff;
-  --slider-bg: #ccc;
-  --slider: #fff; 
-  */
-  
-}
-
-
-
-/* 
-LIGHT GREY / WHITE
-Page BG
-Card BG
-Card Border
-input bg
-slider bg - grey
-slider
-
-#fefae0
-
-ACCENT
-Buttons - #22577a
-Read status - Lighter Green - #57CC99 - Blue #38A3A5
-slider toggled - Lighter Green
-
-DARK
-Font - #0e2635
-
-
-*/
-
-
 :root {
   --page-bg: #E8E9EB;
   --card-bg: #f6f7f8;
   --card-border: #d6d9dc;
+  --add-buton-hover: #eff0f3; 
   --button-regular: #2B3D41;
   --button-read: #73956F;
   --button-unread: #F28F3B;
@@ -120,51 +65,6 @@ body {
   background-color: var(--page-bg);
 }
 
-/* ------ HEADER ------ */
-.header-container {
-  background-color: var(--card-bg);
-  border: 1px solid var(--card-border);
-  margin: 0 0 25px;
-  padding: 25px;
-  display: grid;
-  justify-content: center;
-}
-
-.login {
-  background-color: var(--button-regular);
-  font-weight: bold;
-  color: var(--button-font-color);
-  border: none;
-  border-radius: 3px;
-  padding: 10px;
-  cursor: pointer;
-  margin-top: 15px;
-}
-
-/* ------ BOOKSHELF ------ */
-/* [ ] Rename .show-modal class to .add-a-book */
-/* [ ] Finish restyling button to be text w/ hover effect */
-.button.show-modal {
-  margin: 0 auto 25px;
-  display: block;
-  background: transparent;
-  color: inherit;
-  font-size: 24px;
-  width: 155px;
-}
-
-.button.show-modal:hover {
-  background-color: var(--card-bg);
-}
-
-.book-cards-container {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  justify-content: center;
-  /* row-gap: 25px; */
-}
-
-/* [ ] Clean up button styles */
 .button {
   background-color: var(--button-regular);
   font-weight: bold;
@@ -174,6 +74,66 @@ body {
   padding: 10px;
   cursor: pointer;
   width: 110px;
+}
+
+.col2 {
+  grid-column: span 2;
+}
+
+/* ------ HEADER ------ */
+.header-container {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  margin: 0 0 25px;
+  padding: 25px;
+  display: grid;
+  justify-content: center;
+  /* row-gap: 15px; */
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.header-container h1 {
+  font-size: 2em;
+}
+
+.login-button {
+  justify-self: end;
+  /* background-color: var(--button-regular);
+  font-weight: bold;
+  color: var(--button-font-color);
+  border: none;
+  border-radius: 3px;
+  padding: 10px;
+  cursor: pointer; */
+  /* margin-top: 15px; */
+}
+
+
+
+/* ------ BOOKSHELF ------ */
+.book-cards-container {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  justify-content: center;
+  /* row-gap: 25px; */
+}
+
+/* [ ] Rename .show-modal class to .add-a-book */
+/* [ ] Finish restyling button to be text w/ hover effect */
+#add-book-button {
+  background: transparent;
+  margin: 0 auto 25px;
+  display: block;
+  color: var(--font-color);
+  font-size: 1.5em;
+  width: 180px;
+  opacity: 0.4;
+}
+
+#add-book-button:hover {
+  /* background-color: var(--add-buton-hover); */
+  opacity: 1;
+  transition: all .2s;
 }
 
 .book-card {
@@ -194,11 +154,11 @@ body {
   justify-self: center;
 }
 
-.button.read {
+.read {
   background-color: var(--button-read);
 }
 
-.button.unread {
+.unread {
   background-color: var(--button-unread);
 }
 
@@ -230,13 +190,11 @@ body {
 }
 
 /* ------ ADD BOOK FORM ------ */
-/* [ ] Rename modal styles to more functional description names */
 .modal {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-
   background-color: var(--card-bg);
   border: 1px solid var(--card-border);
   border-radius: 3px;
@@ -256,12 +214,15 @@ body {
   gap: 16px;
 }
 
-.form h3, .form input, .form label, .form-warning {
+
+
+/* .form h3, .form input, .form label, .form-warning {
   grid-column: span 2;
-}
+} */
 
 .form-warning {
   color: red;
+  grid-column: span 2;
 }
 
 .input {
@@ -302,7 +263,7 @@ body {
 .toggle-container {
   /* display: flex;
   align-content: space-between; */
-  grid-column: span 2;
+  /* grid-column: span 2; */
 }
 
 .switch {

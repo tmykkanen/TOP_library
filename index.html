@@ -3,32 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Library</title>
+  <title>Library</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="header-container">
     <h1>Library</h1>
-    <button class="button login" type="button">Log in</button>
+    <button class="button login-button" type="button">Log in</button>
   </div>
-  <button class="show-modal button">+ Add a book</button>
+  <button class="button" id="add-book-button">+ Add a book</button>
   <div class="book-cards-container">
   </div>
   <dialog class="modal">
     <div class="form-container">
       <form class="form" action="" method="get">
-        <h3>Add new book</h3>
-        <input class="input" type="text" id="title" placeholder="Title" required maxlength="100">
-        <input class="input" type="text" id="author" placeholder="Author" required maxlength="100">
-        <input class="input" type="number" id="pages" placeholder="Pages" required>
-        <div class="toggle-container">
+        <h3 class="col2">Add new book</h3>
+        <input class="input col2" type="text" id="title" placeholder="Title" required maxlength="100">
+        <input class="input col2" type="text" id="author" placeholder="Author" required maxlength="100">
+        <input class="input col2" type="number" id="pages" placeholder="Pages" required>
+        <div class="toggle-container col2">
           <span>I've read this book</span>
           <label class="checkbox-label switch" for="status">
             <input type="checkbox" id="status" name="status" value="read" />
             <span class="slider round"></span>
           </label>
         </div>
-        <button type="button" class="submit button">Submit</button>
+        <button type="submit" class="submit button">Submit</button>
         <button type="button" autofocus class="cancel button">Cancel</button>
       </form>
     </div>

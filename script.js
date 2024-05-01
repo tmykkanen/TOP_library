@@ -59,7 +59,7 @@ const display = (function display() {
   } = library;
 
   // cacheDom
-  const showModal = document.querySelector('.show-modal');
+  const addBookButton = document.querySelector('#add-book-button');
   const form = document.querySelector('.form');
   const modal = document.querySelector('.modal');
   const submit = document.querySelector('.submit');
@@ -71,14 +71,14 @@ const display = (function display() {
   const formReadStatus = document.getElementById('status');
 
   // bindEventsStatic
-  showModal.addEventListener('click', () => {
+  addBookButton.addEventListener('click', () => {
     modal.showModal();
   });
   submit.addEventListener('click', (e) => {
     e.preventDefault();
-
+    const existingWarning = document.querySelector('.form-warning');
     if (bookshelf.find((book) => book.title === formTitle.value)) {
-      const existingWarning = document.querySelector('.warning');
+      e.preventDefault();
       if (existingWarning) existingWarning.remove();
       const warningHTML = document.createElement('p');
       warningHTML.textContent = 'This book is already in your library.';
@@ -88,6 +88,7 @@ const display = (function display() {
     }
 
     if (form.checkValidity()) {
+      e.preventDefault();
       const { checked } = formReadStatus;
       const status = checked === true ? 'read' : 'unread';
 
@@ -101,12 +102,16 @@ const display = (function display() {
       render();
       modal.close();
       form.reset();
+      if (existingWarning) existingWarning.remove();
     }
   });
 
   cancel.addEventListener('click', () => {
+    const existingWarning = document.querySelector('.form-warning');
     modal.close();
     form.reset();
+    if (existingWarning) existingWarning.remove();
+    console.log(existingWarning);
   });
 
   const render = () => {
