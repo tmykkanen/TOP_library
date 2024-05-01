@@ -3,7 +3,8 @@
     [X] Color scheme w/ css variables
     [X] Style form
     [X] Consistent button sizing (Read / Not Read)
-    [ ] Clean up button styles
+    [X] Clean up button styles
+    [ ] Clean up css comments / todos
 */
 
 /* CSS RESET https://www.joshwcomeau.com/css/custom-css-reset/ */
@@ -118,8 +119,8 @@ body {
   /* row-gap: 25px; */
 }
 
-/* [ ] Rename .show-modal class to .add-a-book */
-/* [ ] Finish restyling button to be text w/ hover effect */
+/* [X] Rename .show-modal class to .add-a-book */
+/* [X] Finish restyling button to be text w/ hover effect */
 #add-book-button {
   background: transparent;
   margin: 0 auto 25px;
@@ -233,7 +234,7 @@ body {
   padding: 5px 10px;
 }
 
-/* [ ] Finish styling for form validity https://www.silocreativo.com/en/css-rescue-improving-ux-forms/ */
+/* [X] Finish styling for form validity https://www.silocreativo.com/en/css-rescue-improving-ux-forms/ */
 .input:valid {
   /* background-color: green; */
 }

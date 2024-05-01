@@ -1,9 +1,3 @@
-/* eslint-disable arrow-body-style */
-
-// [ ] Clean up console logs + eslint overrides
-// [X] Message for invalid forms
-// [ ] Clean up class names (esp for buttons)
-
 class Book {
   constructor(title, author, pages, status) {
     this.title = title;
@@ -13,9 +7,7 @@ class Book {
   }
 }
 
-// eslint-disable-next-line no-unused-vars
 const library = (function library() {
-  // bookshelf array
   const bookshelf = [];
 
   // add book function
@@ -31,13 +23,8 @@ const library = (function library() {
   };
 
   const toggleReadStatus = (target) => {
-    // console.log(target);
     const index = bookshelf.findIndex((x) => x.title === target.parentNode.dataset.title);
-    // console.log(bookshelf[index]);
-    // console.log(bookshelf[index].status);
     bookshelf[index].status = bookshelf[index].status === 'read' ? 'unread' : 'read';
-    // bookshelf[index].readStatus = !bookshelf[index].readStatus;
-    // console.log(bookshelf[index].status);
     return bookshelf[index].status;
   };
 
@@ -61,7 +48,7 @@ const display = (function display() {
   // cacheDom
   const addBookButton = document.querySelector('#add-book-button');
   const form = document.querySelector('.form');
-  const modal = document.querySelector('.modal');
+  const formModal = document.querySelector('.modal');
   const submit = document.querySelector('.submit');
   const cancel = document.querySelector('.cancel');
   const bookCardsContainer = document.querySelector('.book-cards-container');
@@ -71,8 +58,9 @@ const display = (function display() {
   const formReadStatus = document.getElementById('status');
   let warningHTML;
 
+  // Utility functions for eventListeners
   const resetForm = () => {
-    modal.close();
+    formModal.close();
     if (warningHTML) {
       warningHTML.remove();
       warningHTML = '';
@@ -80,12 +68,14 @@ const display = (function display() {
     form.reset();
   };
 
-  // bindEventsStatic
+  // bindEvents
   addBookButton.addEventListener('click', () => {
-    modal.showModal();
+    formModal.showModal();
   });
+
   submit.addEventListener('click', (e) => {
     e.preventDefault();
+
     if (bookshelf.find((book) => book.title === formTitle.value)) {
       if (warningHTML) return;
       warningHTML = document.createElement('p');
@@ -134,7 +124,6 @@ const display = (function display() {
       removeBtn.href = '#';
       removeBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        // console.log('Remove Button');
         removeBookFromShelf(e.target.parentNode.dataset.title);
         render();
       });
@@ -154,8 +143,6 @@ const display = (function display() {
       if (status === 'read') statusHTML.textContent = 'Read';
       if (status === 'unread') statusHTML.textContent = 'Not Read';
       statusHTML.addEventListener('click', (e) => {
-        // console.log('toggle status');
-        // console.log(e.target.parentNode.dataset.title);
         const { target } = e;
         if (toggleReadStatus(target) === 'read') {
           target.classList.remove('unread');
