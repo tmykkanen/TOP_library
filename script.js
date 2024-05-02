@@ -74,9 +74,10 @@ const display = (function display() {
   });
 
   submit.addEventListener('click', (e) => {
-    e.preventDefault();
+    // e.preventDefault();
 
     if (bookshelf.find((book) => book.title === formTitle.value)) {
+      e.preventDefault();
       if (warningHTML) return;
       warningHTML = document.createElement('p');
       warningHTML.textContent = 'This book is already in your library.';
