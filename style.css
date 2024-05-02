@@ -1,12 +1,3 @@
-/*  [X] Finalize sizing for small screens 
-    [X] Add media queries and custom styles for larger screens
-    [X] Color scheme w/ css variables
-    [X] Style form
-    [X] Consistent button sizing (Read / Not Read)
-    [X] Clean up button styles
-    [ ] Clean up css comments / todos
-*/
-
 /* CSS RESET https://www.joshwcomeau.com/css/custom-css-reset/ */
 /* 1. Use a more-intuitive box-sizing model. */
 *, *::before, *::after {
@@ -93,7 +84,6 @@ body {
   padding: 25px;
   display: grid;
   justify-content: center;
-  /* row-gap: 15px; */
   grid-template-columns: repeat(2, 1fr);
 }
 
@@ -103,14 +93,6 @@ body {
 
 .login-button {
   justify-self: end;
-  /* background-color: var(--button-regular);
-  font-weight: bold;
-  color: var(--button-font-color);
-  border: none;
-  border-radius: 3px;
-  padding: 10px;
-  cursor: pointer; */
-  /* margin-top: 15px; */
 }
 
 
@@ -120,11 +102,8 @@ body {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   justify-content: center;
-  /* row-gap: 25px; */
 }
 
-/* [X] Rename .show-modal class to .add-a-book */
-/* [X] Finish restyling button to be text w/ hover effect */
 #add-book-button {
   background: transparent;
   margin: 0 auto 25px;
@@ -136,7 +115,6 @@ body {
 }
 
 #add-book-button:hover {
-  /* background-color: var(--add-buton-hover); */
   opacity: 1;
   transition: all .2s;
 }
@@ -144,12 +122,10 @@ body {
 .book-card {
   grid-column: span 6; 
   display: grid;
-  /* justify-content: center; */
   background-color: var(--card-bg);
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   border: 1px  solid var(--card-border);
-  /* border-radius: 3px; */
   padding: 16px 32px 32px;
   text-align: center;
 }
@@ -177,7 +153,6 @@ body {
   height: 32px;
   aspect-ratio: 1;
   border-radius: 50%;
-  /* border: 2px solid var(--c); */
   box-sizing: border-box;
   --g:conic-gradient(var(--c) 0 0) no-repeat 50%/;
   background: 
@@ -189,7 +164,6 @@ body {
 }
 
 .remove-btn:hover {
-  /* background-color: var(--add-buton-hover); */
   opacity: 1;
   transition: all .2s;
 }
@@ -203,8 +177,6 @@ body {
   background-color: var(--card-bg);
   border: 1px solid var(--card-border);
   border-radius: 3px;
-  /* width: 300px; */
-  /* height: 300px; */
   padding: 32px;
   min-width: 300px;
 }
@@ -219,12 +191,6 @@ body {
   gap: 16px;
 }
 
-
-
-/* .form h3, .form input, .form label, .form-warning {
-  grid-column: span 2;
-} */
-
 .form-warning {
   color: red;
   grid-column: span 2;
@@ -234,48 +200,14 @@ body {
   background-color: var(--input-bg);
   border: 1px solid var(--card-border);
   border-radius: 3px;
-  /* margin-bottom: 15px; */
   padding: 5px 10px;
-}
-
-/* [X] Finish styling for form validity https://www.silocreativo.com/en/css-rescue-improving-ux-forms/ */
-.input:valid {
-  /* background-color: green; */
-}
-
-.input:focus:valid {
-  /* background-color: transparent; */
-  /* border: 5px solid green; */
-}
-
-/* #commentform input:focus:valid,
-#commentform textarea:focus:valid {
-    border: 1px solid #8BC34A;
-    background-color: transparent;
-} */
-
-.input:invalid {
-  /* background-color: red; */
-}
-
-.input:focus::placeholder {
-  /* color: transparent; */
 }
 
 /* CSS Toggle Switch - https://www.w3schools.com/howto/howto_css_switch.asp */
 /* The switch - the box around the slider */
-/* [X] Finish setting up read status toggle switch */
-.toggle-container {
-  /* display: flex;
-  align-content: space-between; */
-  /* grid-column: span 2; */
-}
-
 .switch {
   position: relative;
   display: inline-block;
-  /* width: 60px;
-  height: 34px; */
   width: 40px;
   height: 24px;
   margin-left: 10px;
@@ -299,15 +231,12 @@ body {
   background-color: var(--slider-bg);
   -webkit-transition: .2s;
   transition: .2s;
-  /* border-radius: 34px; */
   border-radius: 24px;
 }
 
 .slider:before {
   position: absolute;
   content: "";
-  /* height: 26px; */
-  /* width: 26px; */
   height: 16px;
   width: 16px;
   left: 4px;
@@ -327,9 +256,6 @@ input:focus + .slider {
 }
 
 input:checked + .slider:before {
-  /* -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px); */
   -webkit-transform: translateX(16px);
   -ms-transform: translateX(16px);
   transform: translateX(16px);
